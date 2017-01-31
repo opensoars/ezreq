@@ -131,4 +131,5 @@ Run the following command to generate documentation from the source code: `npm r
 
 ## Copyright
 
-Copyright (c) 2017 Sam @ Opensoars. See LICENSE for details.
+Copyright (c) 2017 Sam @ Opensoars. See [LICENSE](https://github.com/opensoars/ezreq/blob/master/LICENSE) for details.
+
