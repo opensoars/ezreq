@@ -22,7 +22,10 @@ When `ezreq` is required, it returns an object containing all `ezreq` functional
 
 Add the following line for modern JS: 
 ```js
-import {GET, PUT, POST, DELETE} from 'ezreq'
+import {GET, PUT, POST, DELETE} from 'ezreq';
+
+// 3 Character lowercase aliases 
+import {get, put, pst, dlt} from 'ezreq';
 ```
 
 Add the following lines for older JS: 
@@ -32,6 +35,13 @@ var GET = ezreq.GET;
 var PUT = ezreq.PUT;
 var POST = ezreq.POST;
 var DELETE = ezreq.DELETE;
+
+// 3 Character lowercase aliases
+var ezreq = require('ezreq');
+var get = ezreq.get;
+var put = ezreq.put;
+var pst = ezreq.pst;
+var dlt = ezreq.dlt;
 ```
 
 ## Use
