@@ -7,4 +7,29 @@ describe('GET', () => {
   describe('require', () => {
     it('returns a function', () => assert.equal(typeof GET, 'function'));
   });
+
+
+  describe('callback functionality', () => {
+    it('takes a urlString and callbackFunction as arguments', () => {
+      assert.doesNotThrow(() => {
+        GET('http://github.com/opensoars', (res) => {});
+      })
+    });
+/*    it('returns an object conaining `on` so event handlers can be bound', () => {
+      assert.equal(
+        typeof GET('http://github.com/opensoars', (res) => {}).on,
+        'function'
+      );
+    });*/
+    it('calls the callback with an error object when an error occurs', (done) => {
+      GET('httpasd://zzzz', (err, res) => {
+        assert.equal(typeof err, 'object');
+        assert.equal(typeof err.message, 'string');
+        done();
+      })
+    });
+
+  });
+
+
 });
