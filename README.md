@@ -52,7 +52,7 @@ Basic functionality is described below.
 
 #### Regular callback handling
 
-Arguments: `GET(urlString|optionsObject, [optionsObject], callbackFunction)`
+Arguments: `GET(urlString|optionsObject, [optionsObject], [callbackFunction])`
 
 ```js
 GET('http://github.com/opensoars', (res) => {
