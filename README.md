@@ -52,11 +52,11 @@ Basic functionality is described below.
 
 #### Regular callback handling
 
-Arguments: `GET(urlString|optionsObject, callbackFunction)`
+Arguments: `GET(urlString|optionsObject, [optionsObject], callbackFunction)`
 
 ```js
 GET('http://github.com/opensoars', (res) => {
-  console.log('succes got body of length', res.body.length);
+  console.log(`Got body of length', ${res.body.length}`);
 }).on('error', (e) => console.log(`On error: ${e.message}`));
 ```
 
@@ -66,7 +66,7 @@ Arguments: `GET(urlString|optionsObject, [optionsObject])`
 
 ```js
 GET('http://github.com/opensoars')
-  .then((res) => console.log(res.body))
+  .then((res) => console.log(`Got body of length', ${res.body.length}`))
   .catch((e) => console.log(`On error: ${e.message}`));
 ```
 
@@ -78,6 +78,7 @@ Arguments: `GET(urlString|optionsObject, [optionsObject])`
 async () => {
   try {
     const res = await GET('http://github.com/opensoars');
+    console.log(`Got body of length', ${res.body.length}`);
   }
   catch (e) { console.log(`On error: ${e.message}`); }
 };
