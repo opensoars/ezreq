@@ -1,6 +1,6 @@
 # ezreq
 
-Easy requests.
+Easy HTTP requests.
 
 [![Build Status](https://travis-ci.org/opensoars/ezreq.svg)](https://travis-ci.org/opensoars/ezreq)
 [![Coverage Status](https://coveralls.io/repos/opensoars/ezreq/badge.svg?branch=master&service=github)](https://coveralls.io/github/opensoars/ezreq?branch=master)
@@ -50,16 +50,37 @@ Basic functionality is described below.
 
 ### GET (get)
 
-#### Promise callback handling
+#### Regular callback handling
+
+Arguments: `GET(urlString|optionsObject, callbackFunction)`
 
 ```js
-GET();
+GET('http://github.com/opensoars', (res) => {
+  console.log('succes got body of length', res.body.length);
+}).on('error', (e) => console.log(`On error: ${e.message}`));
+```
+
+#### Promise callback handling
+
+Arguments: `GET(urlString|optionsObject, [optionsObject])`
+
+```js
+GET('http://github.com/opensoars')
+  .then((res) => console.log(res.body))
+  .catch((e) => console.log(`On error: ${e.message}`));
 ```
 
 #### Async await
 
+Arguments: `GET(urlString|optionsObject, [optionsObject])`
+
 ```js
-GET();
+async () => {
+  try {
+    const res = await GET('http://github.com/opensoars');
+  }
+  catch (e) { console.log(`On error: ${e.message}`); }
+};
 ```
 
 ### PUT (put)
