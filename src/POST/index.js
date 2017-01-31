@@ -5,9 +5,6 @@ const {http, https} = require('reqqer')(['http', 'https']);
  * @example
  * DELETE();
  */
-const POST = () => 
-  new Promise((resolve, reject) => {
-
-  });
+const POST = () => {};
 
 module.exports = POST;
