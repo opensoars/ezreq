@@ -1,0 +1,38 @@
+{
+  "name": "ezreq",
+  "description": "Easy requests",
+  "version": "0.0.1",
+  "author": "opensoars",
+
+  "scripts": {
+    "test_watch": "nodemon --exec \"npm run local_test\"",
+    "test": "node node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha \"./test/mocha/*.js\" && npm run coveralls",
+    "local_test": "node node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha \"./test/mocha/*.js\"",
+    "coveralls": "node node_modules/coveralls/bin/coveralls.js < coverage/lcov.info",
+    "doc": "node node_modules/jsdoc/jsdoc.js -c ./doc/config.json --readme README.md"
+  },
+
+  "engines": {
+    "node": ">=7.4.0"
+  },
+
+  "dependencies": {},
+
+  "devDependencies": {
+    "coveralls": "^2.11.4",
+    "istanbul": "^0.4.0",
+    "jsdoc": "^3.3.3",
+    "mocha": "^2.3.4"
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/opensoars/ezreq"
+  },
+
+  "keywords": [],
+
+  "readmeFilename": "README.md",
+
+  "license": "MIT"
+}
