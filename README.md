@@ -48,25 +48,25 @@ var dlt = ezreq.dlt;
 
 Basic functionality is described below.
 
-### GET
+### GET (get)
 
 ```js
 GET();
 ```
 
-### PUT
+### PUT (put)
 
 ```js
 PUT();
 ```
 
-### POST
+### POST (pst)
 
 ```js
 POST();
 ```
 
-### DELETE
+### DELETE (dlt)
 
 ```js
 DELETE();
