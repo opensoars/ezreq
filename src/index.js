@@ -1,11 +1,13 @@
+const GET =  require('./GET');
+const PUT =  require('./PUT');
+const POST =  require('./POST');
+const DELETE =  require('./DELETE');
+
 /**
- * 
+ * Module object that gets required.
  */
 const ezreq = {
-  GET: require('./GET'),
-  PUT: require('./PUT'),
-  POST: require('./POST'),
-  DELETE: require('./DELETE'),
+  GET, PUT, POST, DELETE
 };
 
 
