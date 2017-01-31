@@ -8,5 +8,4 @@ const PUT = () =>
 
   });
 
-
 module.exports = PUT;

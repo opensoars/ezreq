@@ -50,11 +50,27 @@ Basic functionality is described below.
 
 ### GET (get)
 
+#### Promise callback handling
+
+```js
+GET();
+```
+
+#### Async await
+
 ```js
 GET();
 ```
 
 ### PUT (put)
+
+#### Promise callback handling
+
+```js
+PUT();
+```
+
+#### Async await
 
 ```js
 PUT();
@@ -62,11 +78,27 @@ PUT();
 
 ### POST (pst)
 
+#### Promise callback handling
+
+```js
+POST();
+```
+
+#### Async await
+
 ```js
 POST();
 ```
 
 ### DELETE (dlt)
+
+#### Promise callback handling
+
+```js
+DELETE();
+```
+
+#### Async await
 
 ```js
 DELETE();
@@ -83,7 +115,7 @@ Run this command: `npm run test_local` to run all tests on the local machine and
 
 ### File watcher which runs `test_local` and coverage info collector
 
-`npm run test_watch`
+Run `npm run test_watch`. The `test_watch` command runs the `test_local` command everytime a file change is detected. Customize in order to exclude certain paths or file types.
 
 ### Documentation
 
