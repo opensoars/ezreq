@@ -52,7 +52,7 @@ Basic functionality is described below.
 
 #### Regular callback handling
 
-Arguments: `GET(urlString|optionsObject, [optionsObject], [callbackFunction])`
+Arguments: `GET(urlString|optionsObject, [callbackFunction])`
 
 ```js
 GET('http://github.com/opensoars', (res) => {
@@ -62,7 +62,7 @@ GET('http://github.com/opensoars', (res) => {
 
 #### Promise callback handling
 
-Arguments: `GET(urlString|optionsObject, [optionsObject])`
+Arguments: `GET(urlString|optionsObject)`
 
 ```js
 GET('http://github.com/opensoars')
@@ -72,7 +72,7 @@ GET('http://github.com/opensoars')
 
 #### Async await
 
-Arguments: `GET(urlString|optionsObject, [optionsObject])`
+Arguments: `GET(urlString|optionsObject)`
 
 ```js
 async () => {
