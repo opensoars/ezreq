@@ -4,12 +4,12 @@ const REQ = (moduleName) => require(`./../../${moduleName}`);
 
 describe('GET', () => {
   const GET = REQ('src/GET');
-  describe('require', () => {
+  describe('#require', () => {
     it('returns a function', () => assert.equal(typeof GET, 'function'));
   });
 
 
-  describe('callback functionality', () => {
+  describe('#callback functionality', () => {
     it('takes a urlString and callbackFunction as arguments', () => {
       assert.doesNotThrow(() => {
         GET('http://github.com/opensoars', (res) => {});
