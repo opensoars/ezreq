@@ -9,36 +9,6 @@ const isStr = x => typeof x === 'string';
 const isFun = x => typeof x === 'function';
 
 /**
- * @TODO Module this, but better, something like
- * prepareOptionsFromArguments
- * something along those lines
- * Finds out what kind of operation is required
- * @private
- * @param {object} args - GET arguments
- * @return {object} intentions - Intentions
- */
-function getIntentions(args = []) {
-  const intentions = {};
-
-  // Is the first argument a string or an object?
-
-
-  if (typeof args[0] === 'string') {
-    intentions.url = args[0];
-  }
-
-  if (isObj(args[0])) {
-    intentions.options = args[0];
-  }
-  else if (isObj[1]) {
-    intentions.options = args[1];
-  }
-
-  return intentions
-}
-
-
-/**
  * Throws errors when the arguments passed to GET are not of the right
  * type.
  * @param {array} a - Arguments passed to GET
