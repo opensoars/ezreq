@@ -1,9 +1,6 @@
 const {http, https} = require('reqqer')(['http', 'https']);
 
-/**
- * 
- * @private
- */
+/***/
 const isObj = x => !(x instanceof Array) && typeof x === 'object';
 const isStr = x => typeof x === 'string';
 const isFun = x => typeof x === 'function';
@@ -29,6 +26,12 @@ function verifyArguments(a = []) {
 }
 
 
+/**
+ * Returns an object containing the required properties to make an
+ * http request.
+ * @param {array} a - Arguments
+ * @return {object} args - "Sanitized" arguments
+ */
 function sanitizeArguments(a = []) {
   const args = {};
 
@@ -47,40 +50,34 @@ function sanitizeArguments(a = []) {
 }
 
 /**
- * @TODO this could be done better, without the 2x http.get
- * shud be quite easy..
+ * Makes an HTTP request according to arguments. Either using a callback
+ * or using a promise (of which its handling can be omitted for ez use).
  * @public
- * @param {array} arguments - @TODO
+ * @param {array} arguments - Request details
  * @return {self|promise} - Depends on what the user wants cb or promise
  * @example
- * GET();
+ * GET('http://google.com'); // GET request with no cbs / promise handling
+ * GET('http://google.com', (err, res) => {}); // Cb a la Node.js
+ * GET('http://google.com', getOptionsObject) // request options a la Node.js
+ *   .then((res) => {})   // No cb means promise return
+ *   .catch((err) => {}); // which can be used w/ async await
  */
 module.exports = function GET() {
   const args = verifyArguments(sanitizeArguments(arguments));
-  console.log(args);
 
-  // Returns GET, handle request with callbacks
-  if (args.cb) {
-    try {
+  try {
+    function end({resolve, reject, cb}) {
       http.get(args.url || args.options, (res) => {
         res.body = '';
-        res.on('data', c => res.body += c);
-        res.on('end', () => args.cb(null, res));
-      }).on('error', (e) => args.cb(e));
+        res.on('data', (c) => res.body += c);
+        res.on('end', () => cb ? cb(null, res) : resolve(res));
+      }).on('error', (err) => cb ? cb(err) : reject(e));
+      return false;
     }
-    catch (e) { args.cb(e); }
-    return GET;
+
+    return args.cb
+      ? end({cb: args.cb}) || GET
+      : new Promise((resolve, reject) => end({resolve, reject}));
   }
-  else {
-    return new Promise((resolve, reject) => {
-      try {
-        http.get(args.url || args.options, (res) => {
-          res.body = '';
-          res.on('data', c => res.body += c);
-          res.on('end', () => resolve(res));
-        }).on('error', (e) => reject(e));
-      }
-      catch (e) { reject(e); }
-    });
-  }
+  catch (err) { args.cb ? args.cb(err) : console.log(err.message); }
 };

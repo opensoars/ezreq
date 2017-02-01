@@ -8,9 +8,6 @@ const DELETE =  require('./DELETE');
  * @example
  * import {GET, PUT, POST, DELETE} from 'ezreq'
  */
-const ezreq = {
-  GET, PUT, POST, DELETE
-};
-
+const ezreq = {GET, PUT, POST, DELETE};
 
 module.exports = ezreq;
