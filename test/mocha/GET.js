@@ -1,3 +1,11 @@
+/**
+ * I dont need to actualy use async await in my tests
+ * since it works as long as promises work correctly, which
+ * will of course be tested.
+ * 
+ * Also keep "eztest" in mind <3
+ */
+
 const assert = require('assert');
 
 const REQ = (moduleName) => require(`./../../${moduleName}`);
