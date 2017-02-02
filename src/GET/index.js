@@ -49,6 +49,28 @@ function sanitizeArguments(a = []) {
   return args;
 }
 
+function cbRequest(args) {
+  try {
+    http.get(args.url || args.options, (res) => {
+      res.body = '';
+      res.on('data', c => res.body += c).on('end', () => args.cb(null, res));
+    }).on('error', (err) => args.cb(err));
+  }
+  catch (e) { args.cb(e); }
+}
+
+function promiseRequest(args) {
+  return new Promise((resolve, reject) => {
+    try {
+      http.get(args.url || args.options, (res) => {
+        res.body = '';
+        res.on('data', (c) => res.body += c).on('end', () => resolve(res));
+      }).on('error', (err) => reject(err));
+    }
+    catch (err) { reject(err); }
+  });
+}
+
 /**
  * Makes an HTTP request according to arguments. Either using a callback
  * or using a promise (of which its handling can be omitted for ez use).
@@ -63,21 +85,11 @@ function sanitizeArguments(a = []) {
  *   .catch((err) => {}); // which can be used w/ async await
  */
 module.exports = function GET() {
-  const args = verifyArguments(sanitizeArguments(arguments));
-
-  try {
-    function end({resolve, reject, cb}) {
-      http.get(args.url || args.options, (res) => {
-        res.body = '';
-        res.on('data', (c) => res.body += c);
-        res.on('end', () => cb ? cb(null, res) : resolve(res));
-      }).on('error', (err) => cb ? cb(err) : reject(e));
-      return false;
-    }
-
-    return args.cb
-      ? end({cb: args.cb}) || GET
-      : new Promise((resolve, reject) => end({resolve, reject}));
+  const args = sanitizeArguments(verifyArguments(arguments));
+  //console.log('argsargsargsargsargs', args);
+  if (args.cb) {
+    cbRequest(args);
+    return GET;
   }
-  catch (err) { args.cb ? args.cb(err) : console.log(err.message); }
+  else return promiseRequest(args);
 };

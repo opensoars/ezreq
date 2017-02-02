@@ -29,6 +29,14 @@ describe('GET', () => {
     it('logs the error', (done) => {
       GET('asd://asd').then(() => {}).catch(() => done());
     });
+  });
+
+  describe('#no arguments', () => {
+    it('throws when no arguments are given', () => {
+      assert.throws(() => {
+        GET();
+      })
+    })
   })
 
   describe('#callback functionality', () => {
@@ -48,7 +56,7 @@ describe('GET', () => {
       assert.doesNotThrow(() => {
         const options = {
           hostname: 'localhost',
-          port: 80,
+          port: port,
           method: 'GET'
         };
 
