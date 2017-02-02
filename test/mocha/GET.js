@@ -2,6 +2,11 @@ const http = require('http');
 const port = 3953;
 const hostName = 'localhost';
 const localUrl = `http://${hostName}:${port}`;
+const localOptions = {
+  hostname: 'localhost',
+  port: port,
+  method: 'GET'
+};
 http.createServer((req, res) => {
   res.end('ok');
 }).listen(port);
@@ -31,13 +36,14 @@ describe('GET', () => {
     });
   });
 
-  describe('#no arguments', () => {
-    it('throws when no arguments are given', () => {
-      assert.throws(() => {
-        GET();
-      })
+  describe('#no (or wrong) arguments', () => {
+    it('throws when no arguments are given', () => assert.throws(() => GET()));
+    it('throws when arguments are given but of the wrong type', () => {
+      assert.throws(() => GET([], [], 123));
+      assert.throws(() => GET(123, 'zzz', 123));
+      assert.throws(() => GET(null, null));
     })
-  })
+  });
 
   describe('#callback functionality', () => {
     it('takes a urlString and callbackFunction as arguments', () => {
@@ -53,17 +59,7 @@ describe('GET', () => {
       })
     });
     it('takes an http request options object as 1st argument', (done) => {
-      assert.doesNotThrow(() => {
-        const options = {
-          hostname: 'localhost',
-          port: port,
-          method: 'GET'
-        };
-
-        GET(options, (err, res) => {
-          done();
-        });
-      });
+      assert.doesNotThrow(() => GET(localOptions, (err, res) => done()));
     });
   });
 
@@ -80,6 +76,16 @@ describe('GET', () => {
         assert.equal(typeof err.message, 'string');
         done();
       });
+    });
+    it('takes an url string', (done) => {
+      GET(localUrl)
+        .then(() => done())
+        .catch((err) => {});
+    });
+    it('takes an request options object', (done) => {
+      GET(localOptions)
+        .then(() => done())
+        .catch((err) => {});
     });
   });
 

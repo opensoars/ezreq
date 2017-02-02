@@ -1,9 +1,4 @@
-const {http, https} = require('reqqer')(['http', 'https']);
-
-/***/
-const isObj = x => !(x instanceof Array) && typeof x === 'object';
-const isStr = x => typeof x === 'string';
-const isFun = x => typeof x === 'function';
+const {http, https, is} = require('reqqer')(['http', 'https', 'is']);
 
 /**
  * Throws errors when the arguments passed to GET are not of the right
@@ -21,7 +16,7 @@ const isFun = x => typeof x === 'function';
 function verifyArguments(a = []) {
   if (a.length === 0)
     throw new Error('ezreq.GET requires at least 1 argument');
-  else if (a.length >= 1 && !(isStr(a[0]) || isObj(a[0])) )
+  else if (a.length >= 1 && !(is.string(a[0]) || is.object(a[0])) )
     throw new Error('ezreq.GET requires a string or object as 1st argument');
   return a;
 }
@@ -37,16 +32,12 @@ function verifyArguments(a = []) {
 function sanitizeArguments(a = []) {
   const args = {};
 
-  // Is the first argument can either be an url string or an options object
-  if (isStr(a[0])) args.url = a[0];
-  else if (isObj(a[0])) args.options = a[0];
-
-  // The 2nd argument can be an options object as well
-  if (isObj(a[1])) args.options = a[1];
+  // The first argument can either be an url string or an options object
+  if (is.string(a[0])) args.url = a[0];
+  else if (is.object(a[0])) args.options = a[0];
 
   // Is there a callback?
-  if (isFun(a[1])) args.cb = a[1];
-  else if (isFun(a[2])) args.cb = a[2];
+  if (is.function(a[1])) args.cb = a[1];
 
   return args;
 }
@@ -66,10 +57,10 @@ function cbRequest({url, options, cb}) {
   try {
     http.get(url || options, (res) => {
       res.body = '';
-      res.on('data', c => res.body += c).on('end', () => cb(null, res));
+      res.on('data', (c) => res.body += c).on('end', () => cb(null, res));
     }).on('error', (err) => cb(err));
   }
-  catch (e) { cb(e); }
+  catch (err) { cb(err); }
 }
 
 /**
