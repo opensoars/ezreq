@@ -11,6 +11,9 @@ Simple (next gen JS) HTTP requests
 
 ---
 
+@NOTE
+Lets always translate url to object. (could even use it to allow the old api, whith both a url string and options object)
+
 ## Impression
 
 The code below demonstrates `ezreq` usage. This code can be used for quick reference, even though it only covers the `GET` method.
@@ -144,16 +147,38 @@ POST();
 
 ### DELETE (dlt)
 
-#### Promise callback handling
+#### Regular callback handling
+
+Arguments: `DELETE(urlString|optionsObject, [callbackFunction])`
 
 ```js
-DELETE();
+DELETE('http://github.com/opensoars', (res) => {
+  console.log(`Got body of length: ${res.body.length}`);
+}).on('error', (e) => console.log(`On error: ${e.message}`));
+```
+
+#### Promise callback handling  
+
+Arguments: `DELETE(urlString|optionsObject)`
+
+```js
+DELETE('http://github.com/opensoars')
+  .then((res) => console.log(`Got body of length: ${res.body.length}`))
+  .catch((e) => console.log(`On error: ${e.message}`));
 ```
 
 #### Async await
 
+Arguments: `DELETE(urlString|optionsObject)`
+
 ```js
-DELETE();
+async () => {
+  try {
+    const res = await DELETE('http://github.com/opensoars');
+    console.log(`Got body of length: ${res.body.length}`);
+  }
+  catch (e) { console.log(`On error: ${e.message}`); }
+};
 ```
 
 

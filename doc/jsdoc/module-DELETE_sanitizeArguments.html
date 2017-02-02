@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: GET/promiseRequest</title>
+    <title>JSDoc: Module: DELETE/sanitizeArguments</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: GET/promiseRequest</h1>
+    <h1 class="page-title">Module: DELETE/sanitizeArguments</h1>
 
     
 
@@ -38,8 +38,8 @@
     <div class="container-overview">
     
         
-            <div class="description">Makes an HTTP GET request using either a url string or an options object.
-Succes or failure is handled by promise resolve or reject calls.</div>
+            <div class="description">Returns an object containing the required properties to make an
+http request.</div>
         
 
         
@@ -80,13 +80,13 @@ Succes or failure is handled by promise resolve or reject calls.</div>
 
         <tr>
             
-                <td class="name"><code>url</code></td>
+                <td class="name"><code>a</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">string</span>
+<span class="param-type">array</span>
 
 
             
@@ -96,30 +96,7 @@ Succes or failure is handled by promise resolve or reject calls.</div>
 
             
 
-            <td class="description last">Request either this or options object</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Request either this or url string</td>
+            <td class="description last">Arguments</td>
         </tr>
 
     
@@ -160,7 +137,7 @@ Succes or failure is handled by promise resolve or reject calls.</div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GET_promiseRequest_index.js.html">GET/promiseRequest/index.js</a>, <a href="GET_promiseRequest_index.js.html#line3">line 3</a>
+        <a href="DELETE_sanitizeArguments_index.js.html">DELETE/sanitizeArguments/index.js</a>, <a href="DELETE_sanitizeArguments_index.js.html#line3">line 3</a>
     </li></ul></dd>
     
 
@@ -186,6 +163,10 @@ Succes or failure is handled by promise resolve or reject calls.</div>
 <h5>Returns:</h5>
 
         
+<div class="param-desc">
+    args - "Sanitized" arguments
+</div>
+
 
 
 <dl>
@@ -194,20 +175,13 @@ Succes or failure is handled by promise resolve or reject calls.</div>
     </dt>
     <dd>
         
-<span class="param-type">promise</span>
+<span class="param-type">object</span>
 
 
     </dd>
 </dl>
 
     
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>promiseRequest('http://google.com')
-  .then(() => {})
-  .catch(() => {});</code></pre>
 
 
 

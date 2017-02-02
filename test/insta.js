@@ -1,21 +1,30 @@
 const {GET, PUT, POST, DELETE} = require('./../src');
 
+const port = 80;
+const hostName = 'localhost';
+const localUrl = `http://${hostName}:${port}`;
+const localOptions = {
+  hostname: 'www.google.com',
+  port: port,
+  method: 'DELETE'
+};
 
-GET('http://google.nl', { options: true }, function cb(err, res) {
+
+DELETE('http://google.nl', function cb(err, res) {
 
   if (err)
     return console.log('cb err', err);
 
   console.log('NO ERRR res body length:', res.body.length);
 
-})('http://google.nl', { options: true }, function cb(err, res) {
+})/*('http://google.nl', { options: true }, function cb(err, res) {
 
   if (err)
     return console.log('cb err', err);
 
   console.log('NO ERRR 2 res body length:', res.body.length);
 
-})
+})*/
 
 
 GET('http://google.nl', {opts: true})

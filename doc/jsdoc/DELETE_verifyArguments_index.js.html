@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: index.js</title>
+    <title>JSDoc: Source: DELETE/verifyArguments/index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: index.js</h1>
+    <h1 class="page-title">Source: DELETE/verifyArguments/index.js</h1>
 
     
 
@@ -26,18 +26,30 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const GET =  require('./GET');
-const PUT =  require('./PUT');
-const POST =  require('./POST');
-const DELETE =  require('./DELETE');
+            <pre class="prettyprint source linenums"><code>const is = require('is');
 
 /**
- * Module object that gets required.
- * @module ezreq
+ * Throws errors when the arguments passed to DELETE are not of the right
+ * type.
+ * @module DELETE/verifyArguments
+ * @param {array} a - Arguments passed to DELETE
+ * @return {array} a
  * @example
- * import {GET, PUT, POST, DELETE} from 'ezreq'
+ * verifyArguments(123) // throws
+ * verifyArguments([])  // throws
+ * verifyArguments({})  // throws
+ * verifyArguments(['hello']) // doesnt throw
+ * verifyArguments([{}])      // doesnt throw
  */
-module.exports = {GET, PUT, POST, DELETE};
+module.exports = function verifyArguments(a = []) {
+  if (a.length === 0)
+    throw new Error('ezreq.DELETE requires at least 1 argument');
+  else if (a.length >= 1 &amp;&amp; !(is.string(a[0]) || is.object(a[0])) )
+    throw new Error(
+      'ezreq.DELETE requires a string or object as 1st argument'
+    );
+  return a;
+};
 </code></pre>
         </article>
     </section>

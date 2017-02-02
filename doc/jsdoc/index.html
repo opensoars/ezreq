@@ -43,7 +43,7 @@
 
 
     <section>
-        <article><h1>ezreq</h1><p>Easy HTTP requests.</p>
+        <article><h1>ezreq</h1><p>Simple (next gen JS) HTTP requests</p>
 <p><a href="https://travis-ci.org/opensoars/ezreq"><img src="https://travis-ci.org/opensoars/ezreq.svg" alt="Build Status"></a>
 <a href="https://coveralls.io/github/opensoars/ezreq?branch=master"><img src="https://coveralls.io/repos/github/opensoars/ezreq/badge.svg?branch=master" alt="Coverage Status"></a>
 <a href="http://inch-ci.org/github/opensoars/ezreq"><img src="http://inch-ci.org/github/opensoars/ezreq.svg?branch=master" alt="Inline docs"></a>
@@ -51,7 +51,30 @@
 <a href="https://codeclimate.com/github/opensoars/ezreq"><img src="https://codeclimate.com/github/opensoars/ezreq/badges/gpa.svg" alt="Code Climate"></a>
 <a href="https://www.versioneye.com/user/projects/5890a74d6a0b7c003b834559"><img src="https://www.versioneye.com/user/projects/5890a74d6a0b7c003b834559/badge.svg" alt="Dependency Status"></a></p>
 <hr>
-<h2>Install</h2><p>Run <code>npm install ezreq</code></p>
+<h2>Impression</h2><p>The code below demonstrates <code>ezreq</code> usage. This code can be used for quick reference, even though it only covers the <code>GET</code> method.</p>
+<pre class="prettyprint source lang-js"><code>import {GET} from 'ezreq';
+
+// Callback style
+GET('http://github.com', (err, res) => {
+  if (err) return console.log(`Got error, message: ${err.message}`);
+  console.log(`Got res, body length: ${res.body.length}`);
+});
+
+// Promise style
+GET('http://github.com')
+  .then((res) => console.log(`Got res, body length: ${res.body.length}`))
+  .catch((err) => console.log(`Got error, message: ${err.message}`));
+
+// Promise style using async await
+async () => {
+  try {
+    const res = await GET('http://github.com');
+    console.log(`Got res, body length: ${res.body.length}`);
+  }
+  catch (err) {
+    console.log(`Got error, message: ${err.message}`);
+  }
+}</code></pre><h2>Install</h2><p>Run <code>npm install ezreq</code></p>
 <h2>Include</h2><p>When <code>ezreq</code> is required, it returns an object containing all <code>ezreq</code> functionality.</p>
 <p>Add the following line for modern JS: </p>
 <pre class="prettyprint source lang-js"><code>import {GET, PUT, POST, DELETE} from 'ezreq';
@@ -83,7 +106,20 @@ var dlt = ezreq.dlt;</code></pre><h2>Use</h2><p>Basic functionality is described
     console.log(`Got body of length: ${res.body.length}`);
   }
   catch (e) { console.log(`On error: ${e.message}`); }
-};</code></pre><h3>PUT (put)</h3><h4>Promise callback handling</h4><pre class="prettyprint source lang-js"><code>PUT();</code></pre><h4>Async await</h4><pre class="prettyprint source lang-js"><code>PUT();</code></pre><h3>POST (pst)</h3><h4>Promise callback handling</h4><pre class="prettyprint source lang-js"><code>POST();</code></pre><h4>Async await</h4><pre class="prettyprint source lang-js"><code>POST();</code></pre><h3>DELETE (dlt)</h3><h4>Promise callback handling</h4><pre class="prettyprint source lang-js"><code>DELETE();</code></pre><h4>Async await</h4><pre class="prettyprint source lang-js"><code>DELETE();</code></pre><h2>Develop</h2><p>The following tools can be used whilst developing <code>ezreq</code>.</p>
+};</code></pre><h3>PUT (put)</h3><h4>Promise callback handling</h4><pre class="prettyprint source lang-js"><code>PUT();</code></pre><h4>Async await</h4><pre class="prettyprint source lang-js"><code>PUT();</code></pre><h3>POST (pst)</h3><h4>Promise callback handling</h4><pre class="prettyprint source lang-js"><code>POST();</code></pre><h4>Async await</h4><pre class="prettyprint source lang-js"><code>POST();</code></pre><h3>DELETE (dlt)</h3><h4>Regular callback handling</h4><p>Arguments: <code>DELETE(urlString|optionsObject, [callbackFunction])</code></p>
+<pre class="prettyprint source lang-js"><code>DELETE('http://github.com/opensoars', (res) => {
+  console.log(`Got body of length: ${res.body.length}`);
+}).on('error', (e) => console.log(`On error: ${e.message}`));</code></pre><h4>Promise callback handling</h4><p>Arguments: <code>DELETE(urlString|optionsObject)</code></p>
+<pre class="prettyprint source lang-js"><code>DELETE('http://github.com/opensoars')
+  .then((res) => console.log(`Got body of length: ${res.body.length}`))
+  .catch((e) => console.log(`On error: ${e.message}`));</code></pre><h4>Async await</h4><p>Arguments: <code>DELETE(urlString|optionsObject)</code></p>
+<pre class="prettyprint source lang-js"><code>async () => {
+  try {
+    const res = await DELETE('http://github.com/opensoars');
+    console.log(`Got body of length: ${res.body.length}`);
+  }
+  catch (e) { console.log(`On error: ${e.message}`); }
+};</code></pre><h2>Develop</h2><p>The following tools can be used whilst developing <code>ezreq</code>.</p>
 <h3>Development <code>test_local</code></h3><p>Run this command: <code>npm run test_local</code> to run all tests on the local machine and to collect code coverage information. The code coverage report can be found at <code>coverage/lcov-report/index.html</code>.</p>
 <h3>File watcher which runs <code>test_local</code> and coverage info collector</h3><p>Run <code>npm run test_watch</code>. The <code>test_watch</code> command runs the <code>test_local</code> command everytime a file change is detected. Customize in order to exclude certain paths or file types.</p>
 <h3>Documentation</h3><p>Run the following command to generate documentation from the source code: <code>npm run doc</code>. This will place documentation generated by <code>jsdoc</code> at <code>doc/jsdoc/index.html</code>.</p>
@@ -105,13 +141,13 @@ var dlt = ezreq.dlt;</code></pre><h2>Use</h2><p>Basic functionality is described
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-DELETE.html">DELETE</a></li><li><a href="module-ezreq.html">ezreq</a></li><li><a href="module-GET_cbRequest.html">GET/cbRequest</a></li><li><a href="module-GET_index.html">GET/index</a></li><li><a href="module-GET_promiseRequest.html">GET/promiseRequest</a></li><li><a href="module-GET_sanitizeArguments.html">GET/sanitizeArguments</a></li><li><a href="module-GET_verifyArguments.html">GET/verifyArguments</a></li><li><a href="module-POST.html">POST</a></li><li><a href="module-PUT.html">PUT</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-DELETE_cbRequest.html">DELETE/cbRequest</a></li><li><a href="module-DELETE_index.html">DELETE/index</a></li><li><a href="module-DELETE_promiseRequest.html">DELETE/promiseRequest</a></li><li><a href="module-DELETE_sanitizeArguments.html">DELETE/sanitizeArguments</a></li><li><a href="module-DELETE_verifyArguments.html">DELETE/verifyArguments</a></li><li><a href="module-ezreq.html">ezreq</a></li><li><a href="module-GET_cbRequest.html">GET/cbRequest</a></li><li><a href="module-GET_index.html">GET/index</a></li><li><a href="module-GET_promiseRequest.html">GET/promiseRequest</a></li><li><a href="module-GET_sanitizeArguments.html">GET/sanitizeArguments</a></li><li><a href="module-GET_verifyArguments.html">GET/verifyArguments</a></li><li><a href="module-POST.html">POST</a></li><li><a href="module-PUT.html">PUT</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Feb 02 2017 15:39:02 GMT+0100 (CET)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Feb 02 2017 16:04:56 GMT+0100 (CET)
 </footer>
 
 <script> prettyPrint(); </script>
