@@ -88,6 +88,7 @@ function promiseRequest({url, options}) {
 }
 
 /**
+ * @module GET
  * Makes an HTTP request according to arguments. Either using a callback
  * or using a promise (of which its handling can be omitted for ez use).
  * @public
