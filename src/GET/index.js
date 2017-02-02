@@ -8,7 +8,7 @@ const promiseRequest = require('./promiseRequest');
  * or using a promise (of which its handling can be omitted for ez use).
  * @module 
  * @param {array} arguments - Request details
- * @return {self|promise} - Depends on what the user wants cb or promise
+ * @return {self|promise} - Depends on what the user wants, cb or promise
  * @example
  * GET('http://google.com'); // GET request with no cbs / promise handling
  * GET('http://google.com', (err, res) => {}); // Cb a la Node.js
