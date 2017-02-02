@@ -49,20 +49,20 @@ function sanitizeArguments(a = []) {
   return args;
 }
 
-function cbRequest(args) {
+function cbRequest({url, options, cb}) {
   try {
-    http.get(args.url || args.options, (res) => {
+    http.get(url || options, (res) => {
       res.body = '';
-      res.on('data', c => res.body += c).on('end', () => args.cb(null, res));
-    }).on('error', (err) => args.cb(err));
+      res.on('data', c => res.body += c).on('end', () => cb(null, res));
+    }).on('error', (err) => cb(err));
   }
-  catch (e) { args.cb(e); }
+  catch (e) { cb(e); }
 }
 
-function promiseRequest(args) {
+function promiseRequest({url, options}) {
   return new Promise((resolve, reject) => {
     try {
-      http.get(args.url || args.options, (res) => {
+      http.get(url || options, (res) => {
         res.body = '';
         res.on('data', (c) => res.body += c).on('end', () => resolve(res));
       }).on('error', (err) => reject(err));
@@ -88,8 +88,8 @@ module.exports = function GET() {
   const args = sanitizeArguments(verifyArguments(arguments));
   //console.log('argsargsargsargsargs', args);
   if (args.cb) {
-    cbRequest(args);
+    cbRequest({url: args.url, options: args.options, cb: args.cb});
     return GET;
   }
-  else return promiseRequest(args);
+  else return promiseRequest({url: args.url, options: args.options});
 };
