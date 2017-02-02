@@ -10,7 +10,7 @@ const localOptions = {
 };
 
 
-DELETE('http://google.nl', function cb(err, res) {
+DELETE('http://google.nl:300', function cb(err, res) {
 
   if (err)
     return console.log('cb err', err);

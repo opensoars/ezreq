@@ -18,7 +18,8 @@ module.exports = function sanitizeArguments(a = []) {
 
     const urlObj = url.parse(args.url);
 
-
+//@NOTE
+//Lets always translate url to object. (could even use it to allow the old api, whith both a url string and options object)
 
     console.log(urlObj);    
   }
