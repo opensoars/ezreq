@@ -1,6 +1,6 @@
 # ezreq
 
-Easy HTTP requests.
+Simple (next gen JS) HTTP requests
 
 [![Build Status](https://travis-ci.org/opensoars/ezreq.svg)](https://travis-ci.org/opensoars/ezreq)
 [![Coverage Status](https://coveralls.io/repos/github/opensoars/ezreq/badge.svg?branch=master)](https://coveralls.io/github/opensoars/ezreq?branch=master)
@@ -10,6 +10,36 @@ Easy HTTP requests.
 [![Dependency Status](https://www.versioneye.com/user/projects/5890a74d6a0b7c003b834559/badge.svg)](https://www.versioneye.com/user/projects/5890a74d6a0b7c003b834559)
 
 ---
+
+## Impression
+
+The code below demonstrates `ezreq` usage. This code can be used for quick reference, even though it only covers the `GET` method.
+
+```js
+import {GET} from 'ezreq';
+
+// Callback style
+GET('http://github.com', (err, res) => {
+  if (err) return console.log(`Got error, message: ${err.message}`);
+  console.log(`Got res, body length: ${res.body.length}`);
+});
+
+// Promise style
+GET('http://github.com')
+  .then((res) => console.log(`Got res, body length: ${res.body.length}`))
+  .catch((err) => console.log(`Got error, message: ${err.message}`));
+
+// Promise style using async await
+async () => {
+  try {
+    const res = await GET('http://github.com');
+    console.log(`Got res, body length: ${res.body.length}`);
+  }
+  catch (err) {
+    console.log(`Got error, message: ${err.message}`);
+  }
+}
+```
 
 
 ## Install
@@ -60,7 +90,7 @@ GET('http://github.com/opensoars', (res) => {
 }).on('error', (e) => console.log(`On error: ${e.message}`));
 ```
 
-#### Promise callback handling
+#### Promise callback handling  
 
 Arguments: `GET(urlString|optionsObject)`
 
