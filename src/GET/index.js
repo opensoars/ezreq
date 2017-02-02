@@ -8,6 +8,7 @@ const isFun = x => typeof x === 'function';
 /**
  * Throws errors when the arguments passed to GET are not of the right
  * type.
+ * @private
  * @param {array} a - Arguments passed to GET
  * @return {array} a
  * @example
@@ -29,6 +30,7 @@ function verifyArguments(a = []) {
 /**
  * Returns an object containing the required properties to make an
  * http request.
+ * @private
  * @param {array} a - Arguments
  * @return {object} args - "Sanitized" arguments
  */
@@ -49,6 +51,17 @@ function sanitizeArguments(a = []) {
   return args;
 }
 
+/**
+ * Makes an HTTP GET request using either a url string or an options object.
+ * Success or failure is handled by callbacks.
+ * @private
+ * @param {string} url - Request either this or options object
+ * @param {object} options - Request either this or url string
+ * @param {function} cb - Call on request end or error
+ * @return {void}
+ * @example
+ * cbRequest('http://google.com', (err, res) => {});
+ */
 function cbRequest({url, options, cb}) {
   try {
     http.get(url || options, (res) => {
@@ -59,6 +72,18 @@ function cbRequest({url, options, cb}) {
   catch (e) { cb(e); }
 }
 
+/**
+ * Makes an HTTP GET request using either a url string or an options object.
+ * Succes or failure is handled by promise resolve or reject calls.
+ * @private
+ * @param {string} url - Request either this or options object
+ * @param {object} options - Request either this or url string
+ * @return {promise}
+ * @example
+ * promiseRequest('http://google.com')
+ *   .then(() => {})
+ *   .catch(() => {});
+ */
 function promiseRequest({url, options}) {
   return new Promise((resolve, reject) => {
     try {
