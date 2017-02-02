@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: POST/index.js</title>
+    <title>JSDoc: Source: GET/cbRequest/index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: POST/index.js</h1>
+    <h1 class="page-title">Source: GET/cbRequest/index.js</h1>
 
     
 
@@ -26,17 +26,28 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const {http, https} = require('reqqer')(['http', 'https']);
+            <pre class="prettyprint source linenums"><code>const http = require('http');
 
 /**
- * @module POST
- * @return {promise}
+ * Makes an HTTP GET request using either a url string or an options object.
+ * Success or failure is handled by callbacks.
+ * @module GET/cbRequest
+ * @param {string} url - Request either this or options object
+ * @param {object} options - Request either this or url string
+ * @param {function} cb - Call on request end or error
+ * @return {void}
  * @example
- * DELETE();
+ * cbRequest('http://google.com', (err, res) => {});
  */
-const POST = () => {};
-
-module.exports = POST;
+module.exports = function cbRequest({url, options, cb}) {
+  try {
+    http.get(url || options, (res) => {
+      res.body = '';
+      res.on('data', (c) => res.body += c).on('end', () => cb(null, res));
+    }).on('error', (err) => cb(err));
+  }
+  catch (err) { cb(err); }
+};
 </code></pre>
         </article>
     </section>

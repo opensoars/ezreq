@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: POST/index.js</title>
+    <title>JSDoc: Source: GET/sanitizeArguments/index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: POST/index.js</h1>
+    <h1 class="page-title">Source: GET/sanitizeArguments/index.js</h1>
 
     
 
@@ -26,17 +26,27 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const {http, https} = require('reqqer')(['http', 'https']);
+            <pre class="prettyprint source linenums"><code>const is = require('is');
 
 /**
- * @module POST
- * @return {promise}
- * @example
- * DELETE();
+ * Returns an object containing the required properties to make an
+ * http request.
+ * @module GET/sanitizeArguments
+ * @param {array} a - Arguments
+ * @return {object} args - "Sanitized" arguments
  */
-const POST = () => {};
+module.exports = function sanitizeArguments(a = []) {
+  const args = {};
 
-module.exports = POST;
+  // The first argument can either be an url string or an options object
+  if (is.string(a[0])) args.url = a[0];
+  else if (is.object(a[0])) args.options = a[0];
+
+  // Is there a callback?
+  if (is.function(a[1])) args.cb = a[1];
+
+  return args;
+};
 </code></pre>
         </article>
     </section>
