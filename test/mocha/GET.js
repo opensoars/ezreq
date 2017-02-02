@@ -1,4 +1,6 @@
+const assert = require('assert');
 const http = require('http');
+
 const port = 3953;
 const hostName = 'localhost';
 const localUrl = `http://${hostName}:${port}`;
@@ -7,24 +9,22 @@ const localOptions = {
   port: port,
   method: 'GET'
 };
-http.createServer((req, res) => {
-  res.end('ok');
-}).listen(port);
-
-
-/**
- * I dont need to actualy use async await in my tests
- * since it works as long as promises work correctly, which
- * will of course be tested.
- * 
- * Also keep "eztest" in mind <3
- */
-
-const assert = require('assert');
 
 const REQ = (moduleName) => require(`./../../${moduleName}`);
 
 describe('GET', () => {
+
+  let instance;
+  before((done) => {
+    instance = http.createServer((req, res) => res.end('ok')).listen(port);
+    instance.on('listening', () => done())
+  })
+
+  after((done) => {
+    instance.close();
+    done();
+  });
+
   const GET = REQ('src/GET');
   describe('#require', () => {
     it('returns a function', () => assert.equal(typeof GET, 'function'));
