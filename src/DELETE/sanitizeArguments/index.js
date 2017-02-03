@@ -14,19 +14,14 @@ module.exports = function sanitizeArguments(a = []) {
   if (is.string(a[0])) args.url = a[0];
   else if (is.object(a[0])) args.options = a[0];
 
+  if (!args.options) args.options = {};
   if (args.url) {
-
     const urlObj = url.parse(args.url);
-
-//@NOTE
-//Lets always translate url to object. (could even use it to allow the old api, whith both a url string and options object)
-
-    console.log(urlObj);    
+    args.options.hostname = urlObj.hostname;
+    args.options.port = urlObj.port;
+    args.options.path = urlObj.path;
+    args.options.method = 'DELETE';
   }
-
-
-
-
 
   // Is there a callback?
   if (is.function(a[1])) args.cb = a[1];

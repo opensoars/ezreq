@@ -10,7 +10,7 @@ const localOptions = {
 };
 
 
-DELETE('http://google.nl:300', function cb(err, res) {
+DELETE('http://google.nl:300/asd?a=b', function cb(err, res) {
 
   if (err)
     return console.log('cb err', err);
@@ -26,7 +26,7 @@ DELETE('http://google.nl:300', function cb(err, res) {
 
 })*/
 
-
+/*
 GET('http://google.nl', {opts: true})
   .then((res) => console.log(res.body.length))
-  .catch((err) => console.log('prom err', err));
+  .catch((err) => console.log('prom err', err));*/

@@ -22,6 +22,9 @@ module.exports = function DELETE() {
   // Which can be done in the sanitizeArguments function
 
   const args = sanitizeArguments(verifyArguments(arguments));
+
+  console.log(args);
+
   if (args.cb) {
     cbRequest({url: args.url, options: args.options, cb: args.cb});
     return DELETE;
