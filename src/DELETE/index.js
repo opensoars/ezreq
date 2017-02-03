@@ -17,13 +17,7 @@ const promiseRequest = require('./promiseRequest');
  *   .catch((err) => {}); // which can be used w/ async await
  */
 module.exports = function DELETE() {
-
-  // I GOTTA MAKE REQ OBJECT FROM URL STRING
-  // Which can be done in the sanitizeArguments function
-
   const args = sanitizeArguments(verifyArguments(arguments));
-
-  console.log(args);
 
   if (args.cb) {
     cbRequest({url: args.url, options: args.options, cb: args.cb});

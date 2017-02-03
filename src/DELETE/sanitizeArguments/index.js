@@ -21,6 +21,10 @@ module.exports = function sanitizeArguments(a = []) {
     args.options.port = urlObj.port;
     args.options.path = urlObj.path;
     args.options.method = 'DELETE';
+    if (args.url.indexOf('https') !== -1)
+      args.options.protocol = 'https';
+    else
+      args.options.protocol = 'http';
   }
 
   // Is there a callback?

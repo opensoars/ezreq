@@ -1,4 +1,5 @@
 const http = require('http');
+const https = require('https');
 
 /**
  * @TODO 
@@ -16,7 +17,10 @@ const http = require('http');
 module.exports = function promiseRequest({url, options}) {
   return new Promise((resolve, reject) => {
     try {
-      http.get(url || options, (res) => {
+      console.log(options.protocol);
+
+      (options.protocol === 'https' ? https : http)
+        .get(url || options, (res) => {
         res.body = '';
         res.on('data', (c) => res.body += c).on('end', () => resolve(res));
       }).on('error', (err) => reject(err));

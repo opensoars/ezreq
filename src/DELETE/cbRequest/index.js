@@ -14,7 +14,11 @@ const http = require('http');
  */
 module.exports = function cbRequest({url, options, cb}) {
   try {
-    http.get(url || options, (res) => {
+
+    console.log(options.protocol);
+
+    (options.protocol === 'https' ? https : http)
+      .get(url || options, (res) => {
       res.body = '';
       res.on('data', (c) => res.body += c).on('end', () => cb(null, res));
     }).on('error', (err) => cb(err));
