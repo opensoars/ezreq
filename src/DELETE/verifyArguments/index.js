@@ -4,7 +4,7 @@ const is = require('is');
  * Throws errors when the arguments passed to DELETE are not of the right
  * type.
  * @module DELETE/verifyArguments
- * @param {array} a - Arguments passed to DELETE
+ * @param {arraylike} a - Arguments passed to DELETE
  * @return {array} a
  * @example
  * verifyArguments(123) // throws
