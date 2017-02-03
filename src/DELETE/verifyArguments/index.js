@@ -5,7 +5,7 @@ const is = require('is');
  * type.
  * @module DELETE/verifyArguments
  * @param {arraylike} a - Arguments passed to DELETE
- * @return {array} a
+ * @return {arraylike} a
  * @example
  * verifyArguments(123) // throws
  * verifyArguments([])  // throws

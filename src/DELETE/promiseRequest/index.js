@@ -2,8 +2,7 @@ const http = require('http');
 const https = require('https');
 
 /**
- * @TODO 
- * Makes an HTTP DELETE req using either a url string or an options object.
+ * Makes an HTTP DELETE req using the parsed options object
  * Succes or failure is handled by promise resolve or reject calls.
  * @module DELETE/promiseRequest
  * @param {string} url - Request either this or options object
@@ -14,7 +13,7 @@ const https = require('https');
  *   .then(() => {})
  *   .catch(() => {});
  */
-module.exports = function promiseRequest({url, options}) {
+module.exports = function promiseRequest({options}) {
   return new Promise((resolve, reject) => {
     try {
       (options.protocol === 'https:' ? https : http)

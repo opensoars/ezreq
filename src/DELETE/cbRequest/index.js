@@ -2,8 +2,7 @@ const http = require('http');
 const https = require('https');
 
 /**
- * @TODO
- * Makes an HTTP DELETE req using either a url string or an options object.
+ * Makes an HTTP DELETE req using the parsed options object.
  * Success or failure is handled by callbacks.
  * @module DELETE/cbRequest
  * @param {string} url - Request either this or options object
@@ -13,7 +12,7 @@ const https = require('https');
  * @example
  * cbRequest('http://google.com', (err, res) => {});
  */
-module.exports = function cbRequest({url, options, cb}) {
+module.exports = function cbRequest({options, cb}) {
   try {
     (options.protocol === 'https:' ? https : http).request(options, (res) => {
       res.body = '';
