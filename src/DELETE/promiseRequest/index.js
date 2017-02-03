@@ -17,10 +17,8 @@ const https = require('https');
 module.exports = function promiseRequest({url, options}) {
   return new Promise((resolve, reject) => {
     try {
-      console.log(options.protocol);
-
-      (options.protocol === 'https' ? https : http)
-        .get(url || options, (res) => {
+      (options.protocol === 'https:' ? https : http)
+        .request(options, (res) => {
         res.body = '';
         res.on('data', (c) => res.body += c).on('end', () => resolve(res));
       }).on('error', (err) => reject(err));

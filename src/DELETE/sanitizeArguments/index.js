@@ -14,6 +14,7 @@ module.exports = function sanitizeArguments(a = []) {
   if (is.string(a[0])) args.url = a[0];
   else if (is.object(a[0])) args.options = a[0];
 
+  // Lets always use an request options object
   if (!args.options) args.options = {};
   if (args.url) {
     const urlObj = url.parse(args.url);
@@ -22,9 +23,9 @@ module.exports = function sanitizeArguments(a = []) {
     args.options.path = urlObj.path;
     args.options.method = 'DELETE';
     if (args.url.indexOf('https') !== -1)
-      args.options.protocol = 'https';
+      args.options.protocol = 'https:';
     else
-      args.options.protocol = 'http';
+      args.options.protocol = 'http:';
   }
 
   // Is there a callback?

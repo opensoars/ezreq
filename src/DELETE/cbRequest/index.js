@@ -1,4 +1,5 @@
 const http = require('http');
+const https = require('https');
 
 /**
  * @TODO
@@ -14,11 +15,7 @@ const http = require('http');
  */
 module.exports = function cbRequest({url, options, cb}) {
   try {
-
-    console.log(options.protocol);
-
-    (options.protocol === 'https' ? https : http)
-      .get(url || options, (res) => {
+    (options.protocol === 'https:' ? https : http).request(options, (res) => {
       res.body = '';
       res.on('data', (c) => res.body += c).on('end', () => cb(null, res));
     }).on('error', (err) => cb(err));
