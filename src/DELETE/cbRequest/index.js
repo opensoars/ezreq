@@ -5,8 +5,7 @@ const https = require('https');
  * Makes an HTTP DELETE req using the parsed options object.
  * Success or failure is handled by callbacks.
  * @module DELETE/cbRequest
- * @param {string} url - Request either this or options object
- * @param {object} options - Request either this or url string
+ * @param {object} options - Request using this options object
  * @param {function} cb - Call on request end or error
  * @return {void}
  * @example
