@@ -16,6 +16,8 @@ module.exports = function sanitizeArguments(a = []) {
 
   // Lets always use an request options object
   if (!args.options) args.options = {};
+
+  // Fill request object with data from url (if set)
   if (args.url) {
     const urlObj = url.parse(args.url);
     args.options.hostname = urlObj.hostname;
