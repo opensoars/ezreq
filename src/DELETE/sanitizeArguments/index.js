@@ -1,6 +1,8 @@
 const is = require('is');
 const url = require('url');
 /**
+ * Has to be docced a little bit better, since this is still
+ * a "complex" function!
  * Returns an object containing the required properties to make an
  * http request.
  * @module DELETE/sanitizeArguments
