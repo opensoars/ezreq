@@ -200,7 +200,17 @@ Run the following command to generate documentation from the source code: `npm r
 ## Up next (thoughts)
 
 ```js
-File 
+/**
+ * Current fs is ok, how is a general request object going to be server?
+ * Am I gonna rewrite? Classes/instances?
+ * prolly not..
+ * Serious drawing and thinking will be required :)
+ */
+```
+
+```js
+// url method syntax
+// GET;http://opensoars.github.io
 ```
 
 ```js

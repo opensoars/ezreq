@@ -10,7 +10,7 @@ const urlLib = require('url');
  */
 module.exports = (options, url) => {
   const urlObj = urlLib.parse(url);
-  console.log(urlObj);
+  //console.log(urlObj);
   options.hostname = urlObj.hostname;
   options.port = urlObj.port || 80;
   options.path = urlObj.path || '/';

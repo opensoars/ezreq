@@ -14,8 +14,16 @@ const TIMEOUT = 5000;
  *   .then(() => {})
  *   .catch(() => {});
  */
+
+
+Promise.prototype.GET = function GET() {
+  console.log('cool gettin');
+
+  return {GET};
+}
+
 module.exports = function promiseRequest({options, useHttps}) {
-  return new Promise((resolve, reject) => {
+  return new Promise(function h(resolve, reject) {
     try {
       (options.protocol === 'https:' ? https : http).request(options, (res) => {
         res.body = '';

@@ -10,3 +10,5 @@ const DELETE =  require('./DELETE');
  * import {GET, PUT, POST, DELETE} from 'ezreq'
  */
 module.exports = {GET, PUT, POST, DELETE};
+
+
