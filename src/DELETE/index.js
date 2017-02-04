@@ -1,5 +1,6 @@
 const verifyArguments = require('./verifyArguments');
 const sanitizeArguments = require('./sanitizeArguments');
+const setOptionsFromUrl = require('./setOptionsFromUrl');
 const cbRequest = require('./cbRequest');
 const promiseRequest = require('./promiseRequest');
 
@@ -18,6 +19,9 @@ const promiseRequest = require('./promiseRequest');
  */
 module.exports = function DELETE() {
   const args = sanitizeArguments(verifyArguments(arguments));
+
+  if (args.url)
+    args.options = setOptionsFromUrl(args.options, args.url);
 
   if (args.cb) {
     cbRequest({url: args.url, options: args.options, cb: args.cb});

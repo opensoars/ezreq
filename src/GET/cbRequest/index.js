@@ -1,5 +1,7 @@
 const http = require('http');
 
+const TIMEOUT = 5000;
+
 /**
  * Makes an HTTP GET request using either a url string or an options object.
  * Success or failure is handled by callbacks.
@@ -16,7 +18,8 @@ module.exports = function cbRequest({url, options, cb}) {
     http.get(url || options, (res) => {
       res.body = '';
       res.on('data', (c) => res.body += c).on('end', () => cb(null, res));
-    }).on('error', (err) => cb(err));
+    }).on('error', (err) => cb(err))
+      .setTimeout(TIMEOUT, function () { this.abort(); });
   }
   catch (err) { cb(err); }
 };

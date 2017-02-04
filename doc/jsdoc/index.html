@@ -51,8 +51,6 @@
 <a href="https://codeclimate.com/github/opensoars/ezreq"><img src="https://codeclimate.com/github/opensoars/ezreq/badges/gpa.svg" alt="Code Climate"></a>
 <a href="https://www.versioneye.com/user/projects/5890a74d6a0b7c003b834559"><img src="https://www.versioneye.com/user/projects/5890a74d6a0b7c003b834559/badge.svg" alt="Dependency Status"></a></p>
 <hr>
-<p>@NOTE
-Lets always translate url to object. (could even use it to allow the old api, whith both a url string and options object)</p>
 <h2>Impression</h2><p>The code below demonstrates <code>ezreq</code> usage. This code can be used for quick reference, even though it only covers the <code>GET</code> method.</p>
 <pre class="prettyprint source lang-js"><code>import {GET} from 'ezreq';
 
@@ -108,10 +106,21 @@ var dlt = ezreq.dlt;</code></pre><h2>Use</h2><p>Basic functionality is described
     console.log(`Got body of length: ${res.body.length}`);
   }
   catch (e) { console.log(`On error: ${e.message}`); }
-};</code></pre><h3>PUT (put)</h3><h4>Promise callback handling</h4><pre class="prettyprint source lang-js"><code>PUT();</code></pre><h4>Async await</h4><pre class="prettyprint source lang-js"><code>PUT();</code></pre><h3>POST (pst)</h3><h4>Promise callback handling</h4><pre class="prettyprint source lang-js"><code>POST();</code></pre><h4>Async await</h4><pre class="prettyprint source lang-js"><code>POST();</code></pre><h3>DELETE (dlt)</h3><h4>Regular callback handling</h4><p>Arguments: <code>DELETE(urlString|optionsObject, [callbackFunction])</code></p>
+};</code></pre><h3>PUT (put)</h3><h4>Promise callback handling</h4><pre class="prettyprint source lang-js"><code>PUT();</code></pre><h4>Async await</h4><pre class="prettyprint source lang-js"><code>PUT();</code></pre><h3>POST (pst)</h3><h4>Promise callback handling</h4><pre class="prettyprint source lang-js"><code>POST();</code></pre><h4>Async await</h4><pre class="prettyprint source lang-js"><code>POST();</code></pre><h3>DELETE (dlt)</h3><h4>Regular callback handling</h4><p>Arguments: <code>DELETE(urlString|optionsObject|urlStringsAndOptionsObjectsArray, [callbackFunction])</code></p>
 <pre class="prettyprint source lang-js"><code>DELETE('http://github.com/opensoars', (res) => {
   console.log(`Got body of length: ${res.body.length}`);
-}).on('error', (e) => console.log(`On error: ${e.message}`));</code></pre><h4>Promise callback handling</h4><p>Arguments: <code>DELETE(urlString|optionsObject)</code></p>
+}).on('error', (e) => console.log(`On error: ${e.message}`));
+
+DELETE([
+  'http://google.com',
+  {
+    hostname: 'www.google.com',
+    port: 443,
+    method: 'DELETE',
+    protocol: 'https:'
+  },
+  'http://youtube.com'
+])</code></pre><h4>Promise callback handling</h4><p>Arguments: <code>DELETE(urlString|optionsObject)</code></p>
 <pre class="prettyprint source lang-js"><code>DELETE('http://github.com/opensoars')
   .then((res) => console.log(`Got body of length: ${res.body.length}`))
   .catch((e) => console.log(`On error: ${e.message}`));</code></pre><h4>Async await</h4><p>Arguments: <code>DELETE(urlString|optionsObject)</code></p>
@@ -143,13 +152,13 @@ var dlt = ezreq.dlt;</code></pre><h2>Use</h2><p>Basic functionality is described
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-DELETE_cbRequest.html">DELETE/cbRequest</a></li><li><a href="module-DELETE_index.html">DELETE/index</a></li><li><a href="module-DELETE_promiseRequest.html">DELETE/promiseRequest</a></li><li><a href="module-DELETE_sanitizeArguments.html">DELETE/sanitizeArguments</a></li><li><a href="module-DELETE_verifyArguments.html">DELETE/verifyArguments</a></li><li><a href="module-ezreq.html">ezreq</a></li><li><a href="module-GET_cbRequest.html">GET/cbRequest</a></li><li><a href="module-GET_index.html">GET/index</a></li><li><a href="module-GET_promiseRequest.html">GET/promiseRequest</a></li><li><a href="module-GET_sanitizeArguments.html">GET/sanitizeArguments</a></li><li><a href="module-GET_verifyArguments.html">GET/verifyArguments</a></li><li><a href="module-POST.html">POST</a></li><li><a href="module-PUT.html">PUT</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-DELETE_cbRequest.html">DELETE/cbRequest</a></li><li><a href="module-DELETE_index.html">DELETE/index</a></li><li><a href="module-DELETE_promiseRequest.html">DELETE/promiseRequest</a></li><li><a href="module-DELETE_sanitizeArguments.html">DELETE/sanitizeArguments</a></li><li><a href="module-DELETE_setOptionsFromUrl.html">DELETE/setOptionsFromUrl</a></li><li><a href="module-DELETE_verifyArguments.html">DELETE/verifyArguments</a></li><li><a href="module-ezreq.html">ezreq</a></li><li><a href="module-GET_cbRequest.html">GET/cbRequest</a></li><li><a href="module-GET_index.html">GET/index</a></li><li><a href="module-GET_promiseRequest.html">GET/promiseRequest</a></li><li><a href="module-GET_sanitizeArguments.html">GET/sanitizeArguments</a></li><li><a href="module-GET_verifyArguments.html">GET/verifyArguments</a></li><li><a href="module-POST.html">POST</a></li><li><a href="module-PUT.html">PUT</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Fri Feb 03 2017 19:46:42 GMT+0100 (CET)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Feb 04 2017 14:30:13 GMT+0100 (CET)
 </footer>
 
 <script> prettyPrint(); </script>

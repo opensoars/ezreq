@@ -1,5 +1,7 @@
 const http = require('http');
 
+const TIMEOUT = 5000;
+
 /**
  * Makes an HTTP GET request using either a url string or an options object.
  * Succes or failure is handled by promise resolve or reject calls.
@@ -18,7 +20,8 @@ module.exports = function promiseRequest({url, options}) {
       http.get(url || options, (res) => {
         res.body = '';
         res.on('data', (c) => res.body += c).on('end', () => resolve(res));
-      }).on('error', (err) => reject(err));
+      }).on('error', (err) => reject(err))
+        .setTimeout(TIMEOUT, function () { this.abort(); });
     }
     catch (err) { reject(err); }
   });

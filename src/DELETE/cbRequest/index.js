@@ -1,6 +1,8 @@
 const http = require('http');
 const https = require('https');
 
+const TIMEOUT = 5000;
+
 /**
  * Makes an HTTP DELETE req using the parsed options object.
  * Success or failure is handled by callbacks.
@@ -16,7 +18,8 @@ module.exports = function cbRequest({options, cb}) {
     (options.protocol === 'https:' ? https : http).request(options, (res) => {
       res.body = '';
       res.on('data', (c) => res.body += c).on('end', () => cb(null, res));
-    }).on('error', (err) => cb(err));
+    }).on('error', (err) => cb(err))
+      .setTimeout(TIMEOUT, function () { this.abort(); });
   }
   catch (err) { cb(err); }
 };

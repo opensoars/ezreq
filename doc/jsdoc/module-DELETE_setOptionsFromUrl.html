@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: DELETE/index</title>
+    <title>JSDoc: Module: DELETE/setOptionsFromUrl</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: DELETE/index</h1>
+    <h1 class="page-title">Module: DELETE/setOptionsFromUrl</h1>
 
     
 
@@ -38,8 +38,8 @@
     <div class="container-overview">
     
         
-            <div class="description">Makes an HTTP request according to arguments. Either using a callback
-or using a promise (of which its handling can be omitted for ez use).</div>
+            <div class="description">Extracts HTTP request object options from an url and puts them
+in the options object argument, returns that object when done.</div>
         
 
         
@@ -80,13 +80,13 @@ or using a promise (of which its handling can be omitted for ez use).</div>
 
         <tr>
             
-                <td class="name"><code>arguments</code></td>
+                <td class="name"><code>options</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">array</span>
+<span class="param-type">object</span>
 
 
             
@@ -96,7 +96,30 @@ or using a promise (of which its handling can be omitted for ez use).</div>
 
             
 
-            <td class="description last">Request details</td>
+            <td class="description last">HTTP request options object (might be empty)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>url</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">A url string to extract options from</td>
         </tr>
 
     
@@ -137,7 +160,7 @@ or using a promise (of which its handling can be omitted for ez use).</div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="DELETE_index.js.html">DELETE/index.js</a>, <a href="DELETE_index.js.html#line7">line 7</a>
+        <a href="DELETE_setOptionsFromUrl_index.js.html">DELETE/setOptionsFromUrl/index.js</a>, <a href="DELETE_setOptionsFromUrl_index.js.html#line3">line 3</a>
     </li></ul></dd>
     
 
@@ -164,7 +187,7 @@ or using a promise (of which its handling can be omitted for ez use).</div>
 
         
 <div class="param-desc">
-    - Depends on what the user wants, cb or promise
+    options
 </div>
 
 
@@ -175,25 +198,13 @@ or using a promise (of which its handling can be omitted for ez use).</div>
     </dt>
     <dd>
         
-<span class="param-type">self</span>
-|
-
-<span class="param-type">promise</span>
+<span class="param-type">object</span>
 
 
     </dd>
 </dl>
 
     
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>DELETE('http://google.com'); // DELETE req with no cbs / promise handling
-DELETE('http://google.com', (err, res) => {}); // Cb a la Node.js
-DELETE('http://google.com', getOptionsObject) // req options a la Node.js
-  .then((res) => {})   // No cb means promise return
-  .catch((err) => {}); // which can be used w/ async await</code></pre>
 
 
 

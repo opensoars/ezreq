@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: GET/verifyArguments/index.js</title>
+    <title>JSDoc: Source: DELETE/setOptionsFromUrl/index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: GET/verifyArguments/index.js</h1>
+    <h1 class="page-title">Source: DELETE/setOptionsFromUrl/index.js</h1>
 
     
 
@@ -26,29 +26,31 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const is = require('is');
+            <pre class="prettyprint source linenums"><code>const urlLib = require('url');
 
 /**
- * Throws errors when the arguments passed to GET are not of the right
- * type.
- * @module GET/verifyArguments
- * @param {array} a - Arguments passed to GET
- * @return {array} a
- * @example
- * verifyArguments(123) // throws
- * verifyArguments([])  // throws
- * verifyArguments({})  // throws
- * verifyArguments(['hello']) // doesnt throw
- * verifyArguments([{}])      // doesnt throw
+ * Extracts HTTP request object options from an url and puts them
+ * in the options object argument, returns that object when done.
+ * @module DELETE/setOptionsFromUrl
+ * @param {object} options - HTTP request options object (might be empty)
+ * @param {string} url - A url string to extract options from
+ * @return {object} options
  */
-module.exports = function verifyArguments(a = []) {
-  if (a.length === 0)
-    throw new Error('ezreq.GET requires at least 1 argument');
-  else if (a.length >= 1 &amp;&amp; !(is.string(a[0]) || is.object(a[0])) )
-    throw new Error('ezreq.GET requires a string or object as 1st argument');
-  return a;
-};
-</code></pre>
+module.exports = (options, url) => {
+  const urlObj = urlLib.parse(url);
+  options.hostname = urlObj.hostname;
+  options.port = urlObj.port;
+  options.path = urlObj.path;
+  options.method = 'DELETE';
+
+  const matches = /(.+?\:)/.exec(url);
+  if (matches instanceof Array &amp;&amp; matches[1])
+    options.protocol = matches[1];
+  else
+    options.protocol = 'http:';
+
+  return options;
+}</code></pre>
         </article>
     </section>
 
