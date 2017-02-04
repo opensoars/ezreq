@@ -68,10 +68,11 @@ const newUrlStuff = [
 
 // Isnt this good enough?
 (async () => {
-  const errs = [];
-  const resses = [];
+
 
   try {
+    const errs = [];
+    const resses = [];
     //ezr.set({parallel: true});
     [].forEach(async (reqObjOrStr) => {
       try { resses.push(await ezreq.REQ(reqObjOrStr)); }
@@ -82,8 +83,10 @@ const newUrlStuff = [
     // "Operation err, not ezreq.REQ err"
   }
 
-  // .. errs resses
   try {
+    const errs = [];
+    const resses = [];
+
     await ezr // The await here... hard or what? a final promise?
       .set({parallel: true})         // or even better: THE PROM MANIP?!
       .eachCb.GET([], (err, res) => {
@@ -97,8 +100,11 @@ const newUrlStuff = [
     // This err here.. Hmm That would be the double try catch block ^^^
   }
 
-  // .. errs resses
+  // Dno bout dis 1
   try {
+    const errs = [];
+    const resses = [];
+
     await ezr
       .set({parallel: true, force: false})
       .each.GET([]);
