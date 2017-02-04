@@ -1,7 +1,7 @@
 const assert = require('assert');
 const http = require('http');
 
-const port = 3953;
+const port = 3954;
 const hostName = 'localhost';
 const localUrl = `http://${hostName}:${port}`;
 const localOptions = {

@@ -1,7 +1,7 @@
 const assert = require('assert');
 const http = require('http');
 
-const port = 3953;
+const port = 3954;
 const hostName = 'localhost';
 const localUrl = `http://${hostName}:${port}`;
 const localOptions = {
@@ -30,11 +30,6 @@ describe('GET', () => {
     it('returns a function', () => assert.equal(typeof GET, 'function'));
   });
 
-  describe('#error logger @ catch', () => {
-    it('logs the error', (done) => {
-      GET('asd://asd').then(() => {}).catch(() => done());
-    });
-  });
 
   describe('#no (or wrong) arguments', () => {
     it('throws when no arguments are given', () => assert.throws(() => GET()));

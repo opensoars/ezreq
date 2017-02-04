@@ -10,16 +10,14 @@ const urlLib = require('url');
  */
 module.exports = (options, url) => {
   const urlObj = urlLib.parse(url);
+  console.log(urlObj);
   options.hostname = urlObj.hostname;
-  options.port = urlObj.port;
-  options.path = urlObj.path;
-  options.method = 'DELETE';
+  options.port = urlObj.port || 80;
+  options.path = urlObj.path || '/';
+  options.method = 'GET';
+  options.protocol = urlObj.protocol;
 
-  const matches = /(.+?\:)/.exec(url);
-  if (matches instanceof Array && matches[1])
-    options.protocol = matches[1];
-  else
-    options.protocol = 'http:';
+  console.log(options);
 
   return options;
 }
