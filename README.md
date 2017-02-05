@@ -2,6 +2,8 @@
 
 Simple (next gen JS) HTTP requests. (API changes might be incoming soon.. working on a 0.1.0 release).
 
+(Dev note: keep it simple, this is EZreq, not EVERYTHINGreq..)
+
 [![Build Status](https://travis-ci.org/opensoars/ezreq.svg)](https://travis-ci.org/opensoars/ezreq)
 [![Coverage Status](https://coveralls.io/repos/github/opensoars/ezreq/badge.svg?branch=master)](https://coveralls.io/github/opensoars/ezreq?branch=master)
 [![Inline docs](http://inch-ci.org/github/opensoars/ezreq.svg?branch=master)](http://inch-ci.org/github/opensoars/ezreq)
