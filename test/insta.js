@@ -69,7 +69,7 @@ const newUrlStuff = [
 // Isnt this good enough?
 (async () => {
 
-
+  // This is prolly the better approach
   try {
     const errs = [];
     const resses = [];
