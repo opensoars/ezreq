@@ -202,6 +202,10 @@ Run the following command to generate documentation from the source code: `npm r
 ## Up next (thoughts)
 
 ```js
+// 0.1.0 API
+```
+
+```js
 // Yes, there'll be a more generic request maker, so that "all" methods
 // will be able to share the same logic. Which will of course, limit
 // customization.
