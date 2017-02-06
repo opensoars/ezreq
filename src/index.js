@@ -6,6 +6,9 @@ const DELETE =  require('./DELETE');
 /**
  * Let's put all methods currently in DELETE a fs layer higher
  * More generic approach up next
+ * A request funtion approach indeed.
+ * A single request function that'll be used as a public API and
+ * as an internal API.
  */
 
 /**
