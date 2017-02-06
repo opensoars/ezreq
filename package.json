@@ -31,7 +31,9 @@
     "HTTP",
     "http",
     "HTTPS",
-    "https"
+    "https",
+    "request",
+    "requests"
   ],
   "readmeFilename": "README.md",
   "license": "MIT"
