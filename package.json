@@ -27,7 +27,12 @@
     "type": "git",
     "url": "https://github.com/opensoars/ezreq"
   },
-  "keywords": [],
+  "keywords": [
+    "HTTP",
+    "http",
+    "HTTPS",
+    "https"
+  ],
   "readmeFilename": "README.md",
   "license": "MIT"
 }
