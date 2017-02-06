@@ -202,6 +202,12 @@ Run the following command to generate documentation from the source code: `npm r
 ## Up next (thoughts)
 
 ```js
+// Yes, there'll be a more generic request maker, so that "all" methods
+// will be able to share the same logic. Which will of course, limit
+// customization.
+```
+
+```js
 /**
  * Current fs is ok, how is a general request object going to be server?
  * Am I gonna rewrite? Classes/instances?
