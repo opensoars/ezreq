@@ -202,6 +202,10 @@ Run the following command to generate documentation from the source code: `npm r
 ## Up next (thoughts)
 
 ```js
+// Exposed functional API which will be used internal
+```
+
+```js
 // 0.1.0 API
 ```
 
