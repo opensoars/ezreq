@@ -13,6 +13,7 @@ Simple (next gen JS) HTTP requests. (API changes might be incoming soon.. workin
 
 ---
 
+
 ## Impression
 
 The code below demonstrates `ezreq` usage. This code can be used for quick reference, even though it only covers the `GET` method.
