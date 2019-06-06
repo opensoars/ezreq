@@ -9,7 +9,7 @@ Simple (next gen JS) HTTP requests. (API changes might be incoming soon.. workin
 [![Inline docs](http://inch-ci.org/github/opensoars/ezreq.svg?branch=master)](http://inch-ci.org/github/opensoars/ezreq)
 [![Codacy Badge](https://api.codacy.com/project/badge/f3e64501763645b9aa483bf83a4dd1d5)](https://www.codacy.com/app/sam_1700/ezreq)
 [![Code Climate](https://codeclimate.com/github/opensoars/ezreq/badges/gpa.svg)](https://codeclimate.com/github/opensoars/ezreq)
-[![Dependency Status](https://www.versioneye.com/user/projects/5890a74d6a0b7c003b834559/badge.svg)](https://www.versioneye.com/user/projects/5890a74d6a0b7c003b834559)
+[![dependencies Status](https://david-dm.org/opensoars/ezreq/status.svg)](https://david-dm.org/opensoars/ezreq)
 
 ---
 
